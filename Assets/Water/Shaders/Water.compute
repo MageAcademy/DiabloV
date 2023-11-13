@@ -1,0 +1,59 @@
+#pragma kernel Initialize
+#pragma kernel AddWave
+#pragma kernel Update
+#pragma kernel AfterUpdate
+
+RWTexture2D<float> currentHeightTexture;
+RWTexture2D<float> lastHeightTexture;
+RWTexture2D<float> nextHeightTexture;
+float3 wavePosition;
+float deltaSize;
+float deltaTime;
+float textureSize;
+float waveParameter;
+
+
+[numthreads(8, 8, 1)]
+void Initialize(uint3 dispatchThreadId : SV_DispatchThreadID)
+{
+    lastHeightTexture[dispatchThreadId.xy] = 0.0f;
+    currentHeightTexture[dispatchThreadId.xy] = 0.0f;
+}
+
+
+[numthreads(8, 8, 1)]
+void AddWave(uint3 dispatchThreadId : SV_DispatchThreadID)
+{
+    float x = dispatchThreadId.x / textureSize * 2.0f - 1.0f;
+    float y = dispatchThreadId.y / textureSize * 2.0f - 1.0f;
+    float dx = wavePosition.x - x;
+    float dy = wavePosition.y - y;
+    float r = sqrt(dx * dx + dy * dy);
+    float h = wavePosition.z * pow(max(0.04f - r, 0.0f), 0.5f);
+    currentHeightTexture[dispatchThreadId.xy] -= h;
+}
+
+
+[numthreads(8, 8, 1)]
+void Update(uint3 dispatchThreadId : SV_DispatchThreadID)
+{
+    float last = lastHeightTexture[dispatchThreadId.xy];
+    float current = currentHeightTexture[dispatchThreadId.xy];
+    float next = current * 2.0f - last + deltaTime * deltaTime * waveParameter * waveParameter / deltaSize / deltaSize *
+    (
+        (dispatchThreadId.x != 0 ? currentHeightTexture[dispatchThreadId.xy + uint2(-1, 0)] : current) +
+        (dispatchThreadId.x < uint(textureSize - 1) ? currentHeightTexture[dispatchThreadId.xy + uint2(1, 0)] : current) +
+        (dispatchThreadId.y != 0 ? currentHeightTexture[dispatchThreadId.xy + uint2(0, -1)] : current) +
+        (dispatchThreadId.y < uint(textureSize - 1) ? currentHeightTexture[dispatchThreadId.xy + uint2(0, 1)] : current) -
+        current * 4.0f
+    ) - (current - last) * deltaTime * 0.04f;
+    nextHeightTexture[dispatchThreadId.xy] = clamp(next, -6.0f, 6.0f);
+}
+
+
+[numthreads(8, 8, 1)]
+void AfterUpdate(uint3 dispatchThreadId : SV_DispatchThreadID)
+{
+    lastHeightTexture[dispatchThreadId.xy] = currentHeightTexture[dispatchThreadId.xy];
+    currentHeightTexture[dispatchThreadId.xy] = nextHeightTexture[dispatchThreadId.xy];
+}

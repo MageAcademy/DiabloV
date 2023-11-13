@@ -1,0 +1,112 @@
+[
+    {
+        "id": 0,
+        "blockName": "百炼洞",
+        "soilColor":
+        {
+            "r": 1,
+            "g": 1,
+            "b": 1,
+            "a": 1
+        }
+    },
+    {
+        "id": 1,
+        "blockName": "不舟滩",
+        "soilColor":
+        {
+            "r": 0,
+            "g": 0,
+            "b": 0,
+            "a": 0
+        }
+    },
+    {
+        "id": 2,
+        "blockName": "昆仑墟",
+        "soilColor":
+        {
+            "r": 0,
+            "g": 0,
+            "b": 0,
+            "a": 0
+        }
+    },
+    {
+        "id": 3,
+        "blockName": "落日寺",
+        "soilColor":
+        {
+            "r": 0,
+            "g": 0,
+            "b": 0,
+            "a": 0
+        }
+    },
+    {
+        "id": 4,
+        "blockName": "麦赫塔",
+        "soilColor":
+        {
+            "r": 0,
+            "g": 0,
+            "b": 0,
+            "a": 0
+        }
+    },
+    {
+        "id": 5,
+        "blockName": "森罗谷",
+        "soilColor":
+        {
+            "r": 0,
+            "g": 0,
+            "b": 0,
+            "a": 0
+        }
+    },
+    {
+        "id": 6,
+        "blockName": "神鹰堡",
+        "soilColor":
+        {
+            "r": 0,
+            "g": 0,
+            "b": 0,
+            "a": 0
+        }
+    },
+    {
+        "id": 7,
+        "blockName": "唐安城",
+        "soilColor":
+        {
+            "r": 0,
+            "g": 0,
+            "b": 0,
+            "a": 0
+        }
+    },
+    {
+        "id": 8,
+        "blockName": "天人城",
+        "soilColor":
+        {
+            "r": 0,
+            "g": 0,
+            "b": 0,
+            "a": 0
+        }
+    },
+    {
+        "id": 9,
+        "blockName": "长生寨",
+        "soilColor":
+        {
+            "r": 0,
+            "g": 0,
+            "b": 0,
+            "a": 0
+        }
+    }
+]
