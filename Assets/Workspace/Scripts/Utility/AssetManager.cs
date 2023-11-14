@@ -16,7 +16,7 @@ public class AssetManager
     }
 
 
-    private static IEnumerator LoadAssetAsyncInternal(string bundleName, string assetName, Action<Object> onComplete)
+    public static IEnumerator LoadAssetAsyncInternal(string bundleName, string assetName, Action<Object> onComplete)
     {
         if (!AssetBundleDictionary.ContainsKey(bundleName))
         {
