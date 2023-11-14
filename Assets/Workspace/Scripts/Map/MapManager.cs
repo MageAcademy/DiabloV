@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Reflection;
 using Newtonsoft.Json;
 using UnityEngine;
 using UnityEngine.ProBuilder;
@@ -82,7 +81,7 @@ public class MapManager : MonoBehaviour
                     transform = soil.transform;
                     transform.localPosition = Vector3.down;
                     transform.localScale = new Vector3(mapBlockSize, 2f, mapBlockSize);
-                    soil.GetComponent<MeshRenderer>().material.color = data.soilColor;
+                    soil.GetComponent<MeshRenderer>().material.color = (Color)data.soilColor;
                 }
             }
         });

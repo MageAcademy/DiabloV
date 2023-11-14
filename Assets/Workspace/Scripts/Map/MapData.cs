@@ -8,5 +8,5 @@ public class MapData
 
     public int id = 0;
 
-    public Color soilColor = new Color();
+    public Color32 soilColor = new Color32();
 }
