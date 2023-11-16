@@ -7,9 +7,15 @@ public class MapManager : MonoBehaviour
 {
     public static MapManager Instance = null;
 
+    public Transform gridCanvas = null;
+
     public MapData[] mapData = null;
 
     public Transform parentMap = null;
+
+    public int mapBlockSize = 21;
+
+    public Vector2Int mapBlockLength = new Vector2Int(3, 3);
 
 
     private void Awake()
@@ -26,14 +32,13 @@ public class MapManager : MonoBehaviour
 
     private IEnumerator Generate()
     {
+        // map data, on local player
         yield return AssetManager.LoadAssetAsyncInternal("text assets", "MapData", asset =>
         {
             TextAsset textAsset = asset as TextAsset;
             mapData = JsonConvert.DeserializeObject<MapData[]>(textAsset.text, JsonConverterManager.InstanceList);
         });
 
-        int mapBlockSize = 13;
-        Vector2Int mapBlockLength = new Vector2Int(3, 3);
         int mapBlockCount = mapBlockLength.x * mapBlockLength.y;
         int mapDataLength = mapData.Length;
         if (mapBlockCount > mapDataLength)
@@ -41,6 +46,7 @@ public class MapManager : MonoBehaviour
             yield break;
         }
 
+        // soil base, on local player
         yield return AssetManager.LoadAssetAsyncInternal("prefabs", "Soil Base", asset =>
         {
             GameObject prefabSoilBase = asset as GameObject;
@@ -54,6 +60,7 @@ public class MapManager : MonoBehaviour
                 mapBlockLength.y * mapBlockSize % 2 == 0 ? 0f : 0.5f);
         });
 
+        // soil, client rpc
         yield return AssetManager.LoadAssetAsyncInternal("prefabs", "Soil", asset =>
         {
             GameObject prefabSoil = asset as GameObject;
@@ -82,6 +89,22 @@ public class MapManager : MonoBehaviour
                     transform.localPosition = Vector3.down;
                     transform.localScale = new Vector3(mapBlockSize, 2f, mapBlockSize);
                     soil.GetComponent<MeshRenderer>().material.color = (Color)data.soilColor;
+                }
+            }
+        });
+
+        // image cell entry, on local player
+        CellEntry.Length = new Vector2Int(mapBlockLength.x * mapBlockSize, mapBlockLength.y * mapBlockSize);
+        CellEntry.Instances = new CellEntry[CellEntry.Length.x, CellEntry.Length.y];
+        yield return AssetManager.LoadAssetAsyncInternal("prefabs", "Image Cell Entry", asset =>
+        {
+            GameObject prefabImageCellEntry = asset as GameObject;
+            for (int x = 0; x < CellEntry.Length.x; ++x)
+            {
+                for (int y = 0; y < CellEntry.Length.y; ++y)
+                {
+                    CellEntry.Instances[x, y] = Instantiate(prefabImageCellEntry, gridCanvas).GetComponent<CellEntry>();
+                    CellEntry.Instances[x, y].Initialize(new Vector2Int(x, y));
                 }
             }
         });

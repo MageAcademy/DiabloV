@@ -1,15 +1,15 @@
 ManifestFileVersion: 0
-CRC: 132570065
+CRC: 1059195140
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 9d286ab3b01211b869351a2ce2d2ad40
+    Hash: 5591aafee801b0f3a7dbfe83f91800d6
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 7bdc3353dc48e28fcbf4692ae4b41bbf
+    Hash: ba33d9db865b945233f219ecf58265fb
   IncrementalBuildHash:
     serializedVersion: 2
-    Hash: 73d32f90af7ad6855c158e2fb12fe2d8
+    Hash: 5962a38c06842d08f561e88de6ac10fc
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -31,12 +31,20 @@ ClassTypes:
 - Class: 65
   Script: {instanceID: 0}
 - Class: 114
+  Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+- Class: 114
   Script: {fileID: 11500000, guid: 1ca002da428252441b92f28d83c8a65f, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 8233d90336aea43098adf6dbabd606a2, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 498ae4bb11f3ce4479e9508b48af5cc0, type: 3}
 - Class: 115
+  Script: {instanceID: 0}
+- Class: 222
+  Script: {instanceID: 0}
+- Class: 224
   Script: {instanceID: 0}
 SerializeReferenceClassIdentifiers:
 - AssemblyName: Unity.ProBuilder
@@ -49,8 +57,13 @@ SerializeReferenceClassIdentifiers:
   ClassName: UnityEngine.ProBuilder.SharedVertex
 - AssemblyName: Unity.ProBuilder
   ClassName: UnityEngine.ProBuilder.UnwrapParameters
+- AssemblyName: UnityEngine.CoreModule
+  ClassName: UnityEngine.Events.PersistentCallGroup
+- AssemblyName: UnityEngine.UI
+  ClassName: UnityEngine.UI.MaskableGraphic/CullStateChangedEvent
 Assets:
 - Assets/Workspace/Prefabs/Player Identity.prefab
+- Assets/Workspace/Prefabs/Image Cell Entry.prefab
 - Assets/Workspace/Prefabs/Soil Base.prefab
 - Assets/Workspace/Prefabs/Soil.prefab
 Dependencies: []
