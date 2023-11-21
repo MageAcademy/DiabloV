@@ -1,15 +1,15 @@
 ManifestFileVersion: 0
-CRC: 1059195140
+CRC: 3757691922
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 5591aafee801b0f3a7dbfe83f91800d6
+    Hash: 8e742472b22e5b8610559e0795fab685
   TypeTreeHash:
     serializedVersion: 2
-    Hash: ba33d9db865b945233f219ecf58265fb
+    Hash: 8e6accd3b0c2d7f3773ca87e2f568f93
   IncrementalBuildHash:
     serializedVersion: 2
-    Hash: 5962a38c06842d08f561e88de6ac10fc
+    Hash: b45b31040a9185536bb9f38c59c752e9
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -33,11 +33,17 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
 - Class: 114
+  Script: {fileID: 11500000, guid: e3e1bf0336385ae488f6c96ca6462cfd, type: 3}
+- Class: 114
   Script: {fileID: 11500000, guid: 1ca002da428252441b92f28d83c8a65f, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 792ca2c540ca19641a7b7afc2fce405f, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 8233d90336aea43098adf6dbabd606a2, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: ca9b5d2a27f212c4caa99efa6a5d5e6d, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 498ae4bb11f3ce4479e9508b48af5cc0, type: 3}
 - Class: 115
@@ -66,4 +72,5 @@ Assets:
 - Assets/Workspace/Prefabs/Image Cell Entry.prefab
 - Assets/Workspace/Prefabs/Soil Base.prefab
 - Assets/Workspace/Prefabs/Soil.prefab
+- Assets/Workspace/Prefabs/Player.prefab
 Dependencies: []

@@ -11,6 +11,8 @@ public class UNetworkManager : NetworkManager
 
     public bool isServer = true;
 
+    public Player prefabPlayer = null;
+
     private string localAddress = "127.0.0.1";
 
     private ushort localPort = 9420;
@@ -20,6 +22,7 @@ public class UNetworkManager : NetworkManager
     {
         base.Awake();
         Instance = this;
+        PlayerIdentity.InstanceList.Clear();
     }
 
 
