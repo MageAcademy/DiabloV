@@ -19,7 +19,6 @@ public class PlayerIdentity : NetworkBehaviour
 
     private void Start()
     {
-        Debug.LogError($"{isOwned},{isLocalPlayer},{isClient},{isClientOnly},{isServer},{isServerOnly}");
         InstanceList.Add(this);
         InitializeOnLocalPlayer();
     }
@@ -54,7 +53,6 @@ public class PlayerIdentity : NetworkBehaviour
     }
 
 
-    [Client]
     private void InitializeOnLocalPlayer()
     {
         if (!isLocalPlayer)
@@ -64,8 +62,8 @@ public class PlayerIdentity : NetworkBehaviour
 
         LocalPlayer = this;
         InitializeServerRPC();
-        //InvokeRepeating(nameof(Test1), 2f, 6f);
-        //InvokeRepeating(nameof(Test2), 5f, 6f);
+        InvokeRepeating(nameof(Test1), 2f, 6f);
+        InvokeRepeating(nameof(Test2), 5f, 6f);
     }
 
 
