@@ -58,8 +58,17 @@ public class UNetworkManager : NetworkManager
         else
         {
             Application.targetFrameRate = SettingManager.Data.targetFrameRate;
-            networkAddress = SettingManager.Data.remoteAddress;
-            telepathyTransport.port = SettingManager.Data.remotePort;
+            if (isLocal)
+            {
+                networkAddress = localAddress;
+                telepathyTransport.port = localPort;
+            }
+            else
+            {
+                networkAddress = SettingManager.Data.remoteAddress;
+                telepathyTransport.port = SettingManager.Data.remotePort;
+            }
+
             StartClient();
         }
     }

@@ -1,10 +1,13 @@
 using System.Collections.Generic;
 using Mirror;
 using Steamworks;
+using UnityEngine;
 
 public class PlayerIdentity : NetworkBehaviour
 {
     public static List<PlayerIdentity> InstanceList = new List<PlayerIdentity>();
+
+    public static PlayerIdentity LocalPlayer = null;
 
     [SyncVar] public ulong networkSteamID = 0L;
 
@@ -16,8 +19,21 @@ public class PlayerIdentity : NetworkBehaviour
 
     private void Start()
     {
-        InitializeServerRPC();
+        Debug.LogError($"{isOwned},{isLocalPlayer},{isClient},{isClientOnly},{isServer},{isServerOnly}");
         InstanceList.Add(this);
+        InitializeOnLocalPlayer();
+    }
+
+
+    private void Test1()
+    {
+        SpawnPlayerServerRPC(new Vector3(Random.Range(-3f, 3f), 0f, Random.Range(-3f, 3f)));
+    }
+
+
+    private void Test2()
+    {
+        UnSpawnPlayerServerRPC();
     }
 
 
@@ -38,6 +54,21 @@ public class PlayerIdentity : NetworkBehaviour
     }
 
 
+    [Client]
+    private void InitializeOnLocalPlayer()
+    {
+        if (!isLocalPlayer)
+        {
+            return;
+        }
+
+        LocalPlayer = this;
+        InitializeServerRPC();
+        //InvokeRepeating(nameof(Test1), 2f, 6f);
+        //InvokeRepeating(nameof(Test2), 5f, 6f);
+    }
+
+
     [Command]
     private void InitializeServerRPC()
     {
@@ -47,14 +78,14 @@ public class PlayerIdentity : NetworkBehaviour
 
 
     [Command(requiresAuthority = false)]
-    public void SpawnPlayerServerRPC(NetworkConnectionToClient conn = null)
+    public void SpawnPlayerServerRPC(Vector3 position, NetworkConnectionToClient conn = null)
     {
         if (networkSteamID == 0L || player != null)
         {
             return;
         }
 
-        player = Instantiate(UNetworkManager.Instance.prefabPlayer);
+        player = Instantiate(UNetworkManager.Instance.prefabPlayer, position, Quaternion.identity);
         player.networkSteamID = networkSteamID;
         NetworkServer.Spawn(player.gameObject, conn);
     }

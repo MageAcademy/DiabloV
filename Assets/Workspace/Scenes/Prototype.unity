@@ -189,7 +189,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 2
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 1075805947}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -723,12 +723,7 @@ MonoBehaviour:
   sceneGUID: efc445a5b574c8a438c74c8aafad490d
   cellSharedDataAsset: {fileID: 4900000, guid: e2aa3f480dda33d4984ebbed1efdeecd, type: 3}
   cellSupportDataAsset: {fileID: 4900000, guid: 768b625d3bb2907428d51c56298dcd71, type: 3}
-  serializedScenarios:
-  - scenario: Default
-    data:
-      sceneHash: 713801879
-      cellDataAsset: {fileID: 4900000, guid: c3761bd83c5be704cbbaed264849af71, type: 3}
-      cellOptionalDataAsset: {fileID: 4900000, guid: 82a30e2def1202046a3e645d5454f5b4, type: 3}
+  serializedScenarios: []
 --- !u!4 &751829233
 Transform:
   m_ObjectHideFlags: 1
@@ -1281,7 +1276,7 @@ MonoBehaviour:
   lowestSubdivLevelOverride: 0
   highestSubdivLevelOverride: -1
   overridesSubdivLevels: 0
-  mightNeedRebaking: 0
+  mightNeedRebaking: 1
   cachedTransform:
     e00: 1
     e01: 0
@@ -1405,8 +1400,8 @@ MonoBehaviour:
   connectionQualityInterval: 3
   timeInterpolationGui: 1
   isClient: 1
-  isLocal: 0
-  isServer: 1
+  isLocal: 1
+  isServer: 0
   prefabPlayer: {fileID: 8133703301066224512, guid: a14b9faf65269104ca93dfd1b96dcf25, type: 3}
 --- !u!4 &2004516287
 Transform:
@@ -1510,6 +1505,7 @@ SceneRoots:
   - {fileID: 741166175}
   - {fileID: 2130490939}
   - {fileID: 282830505}
+  - {fileID: 135657318}
   - {fileID: 1686999908}
   - {fileID: 963194228}
   - {fileID: 222214519}
@@ -1518,4 +1514,3 @@ SceneRoots:
   - {fileID: 766714157}
   - {fileID: 499389804}
   - {fileID: 158875056}
-  - {fileID: 135657318}

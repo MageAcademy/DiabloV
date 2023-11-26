@@ -14,6 +14,8 @@ public class Player : NetworkBehaviour
 
     public Action<string> onSteamNameValueChange = null;
 
+    private bool checkNull = false;
+
 
     private void Start()
     {
@@ -21,20 +23,28 @@ public class Player : NetworkBehaviour
     }
 
 
+    private void Update()
+    {
+        CheckNull();
+    }
+
+
+    private void CheckNull()
+    {
+        if (checkNull && playerIdentity == null)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+
     private IEnumerator Initialize()
     {
         while (true)
         {
-            foreach (PlayerIdentity playerIdentity in PlayerIdentity.InstanceList)
-            {
-                if (networkSteamID == playerIdentity.networkSteamID)
-                {
-                    this.playerIdentity = playerIdentity;
-                    break;
-                }
-            }
-
-            if (playerMove != null)
+            playerIdentity =
+                PlayerIdentity.InstanceList.Find(playerIdentity => playerIdentity.networkSteamID == networkSteamID);
+            if (playerIdentity != null)
             {
                 break;
             }
@@ -42,6 +52,7 @@ public class Player : NetworkBehaviour
             yield return null;
         }
 
+        checkNull = true;
         playerAppearance.Initialize(this);
         playerMove.Initialize(this);
     }
