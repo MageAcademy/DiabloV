@@ -1,11 +1,14 @@
 using System;
 using System.Collections;
 using Mirror;
+using UnityEngine;
 
 public class Player : NetworkBehaviour
 {
+    [SyncVar] public Vector2Int networkCoordinate = new Vector2Int(-1, -1);
+    
     [SyncVar] public ulong networkSteamID = 0L;
-
+    
     public PlayerAppearance playerAppearance = null;
 
     public PlayerIdentity playerIdentity = null;

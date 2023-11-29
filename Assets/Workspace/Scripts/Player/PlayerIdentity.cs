@@ -24,18 +24,6 @@ public class PlayerIdentity : NetworkBehaviour
     }
 
 
-    private void Test1()
-    {
-        SpawnPlayerServerRPC(new Vector3(Random.Range(-3f, 3f), 0f, Random.Range(-3f, 3f)));
-    }
-
-
-    private void Test2()
-    {
-        UnSpawnPlayerServerRPC();
-    }
-
-
     private void OnDestroy()
     {
         InstanceList.Remove(this);
@@ -62,8 +50,6 @@ public class PlayerIdentity : NetworkBehaviour
 
         LocalPlayer = this;
         InitializeServerRPC();
-        InvokeRepeating(nameof(Test1), 2f, 6f);
-        InvokeRepeating(nameof(Test2), 5f, 6f);
     }
 
 

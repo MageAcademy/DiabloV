@@ -53,6 +53,7 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
+  networkCoordinate: {x: -1, y: -1}
   networkSteamID: 0
   playerAppearance: {fileID: 5449142488867617020}
   playerIdentity: {fileID: 0}
@@ -84,9 +85,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3e1bf0336385ae488f6c96ca6462cfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncDirection: 0
+  syncDirection: 1
   syncMode: 0
   syncInterval: 0
+  networkPosition: {x: 0, y: 0, z: 0}
+  networkRotation: {x: 0, y: 0, z: 0, w: 0}
+  rigidbody: {fileID: -7963193511188338975}
 --- !u!114 &2207773219374306092
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -99,6 +103,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clientStarted: 0
   sceneId: 0
   _assetId: 3294561530
   serverOnly: 0

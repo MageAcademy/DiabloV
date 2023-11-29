@@ -1,11 +1,15 @@
+using System;
 using System.Collections;
 using Newtonsoft.Json;
 using UnityEngine;
 using UnityEngine.ProBuilder;
+using Random = UnityEngine.Random;
 
 public class MapManager : MonoBehaviour
 {
     public static MapManager Instance = null;
+
+    public static bool IsInitialized = false;
 
     public Transform gridCanvas = null;
 
@@ -17,20 +21,31 @@ public class MapManager : MonoBehaviour
 
     public Vector2Int mapBlockLength = new Vector2Int(3, 3);
 
+    private bool isValid = false;
+
+    private Transform player = null;
+
 
     private void Awake()
     {
         Instance = this;
+        IsInitialized = false;
     }
 
 
-    public void Initialize()
+    private void Update()
     {
-        StartCoroutine(Generate());
+        RefreshCellEntries();
     }
 
 
-    private IEnumerator Generate()
+    public void Initialize(Action onCompleted = null)
+    {
+        StartCoroutine(Generate(onCompleted));
+    }
+
+
+    private IEnumerator Generate(Action onCompleted)
     {
         // map data, on local player
         yield return AssetManager.LoadAssetAsyncInternal("text assets", "MapData", asset =>
@@ -108,5 +123,34 @@ public class MapManager : MonoBehaviour
                 }
             }
         });
+
+        onCompleted?.Invoke();
+        IsInitialized = true;
+    }
+
+
+    private void RefreshCellEntries()
+    {
+        bool isValid = IsInitialized && PlayerIdentity.LocalPlayer != null && PlayerIdentity.LocalPlayer.player != null;
+        Vector2Int currentCoordinate = new Vector2Int();
+        if (isValid)
+        {
+            currentCoordinate = CellEntry.GetCoordinateByPosition(PlayerIdentity.LocalPlayer.player.transform.position);
+            isValid = CellEntry.IsValid(currentCoordinate);
+        }
+
+        if (isValid)
+        {
+            if (!this.isValid || currentCoordinate != CellEntry.LastCoordinate)
+            {
+                CellEntry.Instances[currentCoordinate.x, currentCoordinate.y].ToggleOn();
+            }
+        }
+        else if (this.isValid)
+        {
+            CellEntry.Instances[CellEntry.LastCoordinate.x, CellEntry.LastCoordinate.y].ToggleOff();
+        }
+
+        this.isValid = isValid;
     }
 }

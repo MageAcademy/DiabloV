@@ -22,7 +22,7 @@ public class CellEntry : MonoBehaviour
     {
         this.coordinate = coordinate;
         transform.position = GetPositionByCoordinate(coordinate);
-        image.color = Random.Range(0, 2) == 0 ? colorOff : colorOn;
+        ToggleOff();
     }
 
 
@@ -32,7 +32,7 @@ public class CellEntry : MonoBehaviour
     }
 
 
-    private void ToggleOn()
+    public void ToggleOn()
     {
         if (IsValid(LastCoordinate))
         {

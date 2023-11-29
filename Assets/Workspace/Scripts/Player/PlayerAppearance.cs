@@ -2,9 +2,9 @@ using Mirror;
 
 public class PlayerAppearance : NetworkBehaviour
 {
-    private Player player = null;
-
     private bool isInitialized = false;
+
+    private Player player = null;
 
 
     public void Initialize(Player player)

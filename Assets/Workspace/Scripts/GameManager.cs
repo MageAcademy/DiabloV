@@ -17,6 +17,5 @@ public class GameManager : MonoBehaviour
         AssetManager.AssetBundleDictionary = new Dictionary<string, AssetBundle>();
         SettingManager.Load();
         UNetworkManager.Instance?.Initialize();
-        MapManager.Instance.Initialize();
     }
 }
